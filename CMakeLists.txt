@@ -1,0 +1,3 @@
+cmake_minimum_required(VERSION 3.31)
+project(Algorithms_and_Problem_Solving_Level_3)
+set(CMAKE_CXX_STANDARD 26)
