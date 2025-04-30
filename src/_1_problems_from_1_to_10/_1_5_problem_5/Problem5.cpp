@@ -41,9 +41,9 @@ void calculateSumEachColumnMatrixNumbers(
     const short ROWS,
     const short COLUMNS
 ) {
-    for (int column = 0; column < COLUMNS; ++column) {
+    for (short column = 0; column < COLUMNS; ++column) {
         short columnSum = MATRIX_NUMBERS[0][column];
-        for (int row = 1; row < ROWS; ++row)
+        for (short row = 1; row < ROWS; ++row)
             columnSum += MATRIX_NUMBERS[row][column];
         sumEachNumbers[column] = columnSum;
     }
@@ -53,7 +53,7 @@ void printSumEachColumns(
     short sumEachColumns[3],
     const short COLUMNS
 ) {
-    for (int index = 0; index < COLUMNS; ++index)
+    for (short index = 0; index < COLUMNS; ++index)
         cout << "Column " << index + 1 << " Sum = " << sumEachColumns[index] << endl;
 }
 

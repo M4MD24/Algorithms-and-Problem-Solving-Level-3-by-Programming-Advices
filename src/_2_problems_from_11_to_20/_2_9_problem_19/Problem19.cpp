@@ -41,8 +41,8 @@ short minimumNumberInMatrixNumbers(
     const short COLUMNS
 ) {
     short minimumNumber = MATRIX_NUMBERS[0][0];
-    for (int row = 0; row < ROWS; ++row)
-        for (int column = 0; column < COLUMNS; ++column)
+    for (short row = 0; row < ROWS; ++row)
+        for (short column = 0; column < COLUMNS; ++column)
             if (
                 const short CURRENT_NUMBER = MATRIX_NUMBERS[row][column];
                 CURRENT_NUMBER < minimumNumber

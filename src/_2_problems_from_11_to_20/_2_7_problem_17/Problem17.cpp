@@ -60,8 +60,8 @@ bool isTargetNumberFoundInMatrixNumbers(
     const short COLUMNS,
     const short TARGET_NUMBER
 ) {
-    for (int row = 0; row < ROWS; ++row)
-        for (int column = 0; column < COLUMNS; ++column)
+    for (short row = 0; row < ROWS; ++row)
+        for (short column = 0; column < COLUMNS; ++column)
             if (MATRIX_NUMBERS[row][column] == TARGET_NUMBER)
                 return true;
     return false;

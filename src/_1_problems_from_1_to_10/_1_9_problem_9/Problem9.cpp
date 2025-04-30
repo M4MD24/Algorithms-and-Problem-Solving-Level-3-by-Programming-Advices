@@ -41,7 +41,7 @@ void printMiddleRowOfMatrixNumbers(
     const short COLUMNS
 ) {
     const short MIDDLE_ROW = static_cast<short>(ROWS / 2);
-    for (int column = 0; column < COLUMNS; ++column)
+    for (short column = 0; column < COLUMNS; ++column)
         cout << MATRIX_NUMBERS[MIDDLE_ROW][column] << ' ';
 }
 
@@ -51,7 +51,7 @@ void printMiddleColumnOfMatrixNumbers(
     const short COLUMNS
 ) {
     const short MIDDLE_COLUMN = static_cast<short>(COLUMNS / 2);
-    for (int row = 0; row < ROWS; ++row)
+    for (short row = 0; row < ROWS; ++row)
         cout << MATRIX_NUMBERS[row][MIDDLE_COLUMN] << endl;
 }
 

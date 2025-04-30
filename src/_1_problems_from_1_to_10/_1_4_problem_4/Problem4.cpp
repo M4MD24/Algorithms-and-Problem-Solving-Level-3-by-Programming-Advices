@@ -40,10 +40,10 @@ void printSumEachColumnMatrixNumbers(
     const short ROWS,
     const short COLUMNS
 ) {
-    for (int column = 0; column < COLUMNS; ++column) {
+    for (short column = 0; column < COLUMNS; ++column) {
         cout << "Column " << column + 1 << " Sum = ";
         short columnSum = MATRIX_NUMBERS[0][column];
-        for (int row = 1; row < ROWS; ++row)
+        for (short row = 1; row < ROWS; ++row)
             columnSum += MATRIX_NUMBERS[row][column];
         cout << columnSum << endl;
     }

@@ -53,7 +53,7 @@ void printSumEachRows(
     short sumEachRows[3],
     const short ROWS
 ) {
-    for (int index = 0; index < ROWS; ++index)
+    for (short index = 0; index < ROWS; ++index)
         cout << "Row " << index + 1 << " Sum = " << sumEachRows[index] << endl;
 }
 
