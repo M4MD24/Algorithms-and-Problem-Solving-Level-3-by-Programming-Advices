@@ -66,7 +66,7 @@ int main() {
 
     const short ROWS = 3,
                 COLUMNS = 3;
-    const short NUMBER_NUMBER_WIDTH = 2;
+    const short NUMBER_WIDTH = 2;
     short matrixNumbers[ROWS][COLUMNS];
 
     fillMatrixWithRandomNumbers(
@@ -80,7 +80,7 @@ int main() {
         matrixNumbers,
         ROWS,
         COLUMNS,
-        NUMBER_NUMBER_WIDTH
+        NUMBER_WIDTH
     );
 
     cout << "\nMiddle Column of Matrix Numbers:" << endl;
