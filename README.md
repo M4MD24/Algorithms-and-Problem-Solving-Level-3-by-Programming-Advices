@@ -27,3 +27,4 @@
    2. [Problem 22](src/_3_problems_from_21_to_30/_3_2_problem_22)
    3. [Problem 23](src/_3_problems_from_21_to_30/_3_3_problem_23)
    4. [Problem 24](src/_3_problems_from_21_to_30/_3_4_problem_24)
+   5. [Problem 25](src/_3_problems_from_21_to_30/_3_5_problem_25)
