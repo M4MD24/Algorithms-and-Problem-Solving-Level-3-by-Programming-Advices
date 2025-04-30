@@ -8,7 +8,7 @@ short randomNumber(
 ) { return rand() % (TO - FROM + 1) + FROM; }
 
 void fillMatrixWithRandomNumbers(
-    short matrixNumbers[3][3],
+    short matrixNumbers[7][7],
     const short ROWS,
     const short COLUMNS
 ) {
@@ -21,7 +21,7 @@ void fillMatrixWithRandomNumbers(
 }
 
 void printMatrixNumbers(
-    const short MATRIX_NUMBERS[3][3],
+    const short MATRIX_NUMBERS[7][7],
     const short ROWS,
     const short COLUMNS,
     const short NUMBER_WIDTH
@@ -35,16 +35,20 @@ void printMatrixNumbers(
     }
 }
 
-void printSumOfNumbers(
-    const short MATRIX_NUMBERS[3][3],
+void printIntersectedNumbers(
+    const short FIRST_MATRIX_NUMBERS[7][7],
+    const short SECOND_MATRIX_NUMBERS[7][7],
     const short ROWS,
     const short COLUMNS
 ) {
-    short sumOfNumbers = 0;
     for (short row = 0; row < ROWS; ++row)
         for (short column = 0; column < COLUMNS; ++column)
-            sumOfNumbers += MATRIX_NUMBERS[row][column];
-    cout << "Sum of Matrix Numbers = " << sumOfNumbers;
+            if (
+                const short FIRST_NUMBER = FIRST_MATRIX_NUMBERS[row][column],
+                            SECOND_NUMBER = SECOND_MATRIX_NUMBERS[row][column];
+                FIRST_NUMBER == SECOND_NUMBER
+            )
+                cout << SECOND_NUMBER << ' ';
 }
 
 int main() {
@@ -56,29 +60,44 @@ int main() {
         )
     );
 
-    const short ROWS = 3,
-                COLUMNS = 3;
+    const short ROWS = 7,
+                COLUMNS = 7;
     const short NUMBER_WIDTH = 2;
-    short matrixNumbers[ROWS][COLUMNS];
+    short firstMatrixNumbers[ROWS][COLUMNS],
+          secondMatrixNumbers[ROWS][COLUMNS];
 
     fillMatrixWithRandomNumbers(
-        matrixNumbers,
+        firstMatrixNumbers,
         ROWS,
         COLUMNS
     );
 
-    cout << "Matrix Numbers:" << endl;
+    fillMatrixWithRandomNumbers(
+        secondMatrixNumbers,
+        ROWS,
+        COLUMNS
+    );
+
+    cout << "First Matrix Numbers:" << endl;
     printMatrixNumbers(
-        matrixNumbers,
+        firstMatrixNumbers,
         ROWS,
         COLUMNS,
         NUMBER_WIDTH
     );
 
-    cout << endl;
+    cout << "\nSecond Matrix Numbers:" << endl;
+    printMatrixNumbers(
+        secondMatrixNumbers,
+        ROWS,
+        COLUMNS,
+        NUMBER_WIDTH
+    );
 
-    printSumOfNumbers(
-        matrixNumbers,
+    cout << "\nIntersected Numbers:" << endl;
+    printIntersectedNumbers(
+        firstMatrixNumbers,
+        secondMatrixNumbers,
         ROWS,
         COLUMNS
     );

@@ -1,5 +1,6 @@
 #include <iomanip>
 #include <iostream>
+#include <limits>
 using namespace std;
 
 short randomNumber(
@@ -8,7 +9,7 @@ short randomNumber(
 ) { return rand() % (TO - FROM + 1) + FROM; }
 
 void fillMatrixWithRandomNumbers(
-    short matrixNumbers[3][3],
+    short matrixNumbers[5][5],
     const short ROWS,
     const short COLUMNS
 ) {
@@ -21,7 +22,7 @@ void fillMatrixWithRandomNumbers(
 }
 
 void printMatrixNumbers(
-    const short MATRIX_NUMBERS[3][3],
+    const short MATRIX_NUMBERS[5][5],
     const short ROWS,
     const short COLUMNS,
     const short NUMBER_WIDTH
@@ -35,16 +36,35 @@ void printMatrixNumbers(
     }
 }
 
-void printSumOfNumbers(
-    const short MATRIX_NUMBERS[3][3],
+short readNumber() {
+    short number;
+    bool valid;
+    do {
+        cout << "Enter Target Number:" << endl;
+        cin >> number;
+        valid = !cin.fail();
+        if (!valid) {
+            cin.clear();
+            cin.ignore(
+                numeric_limits<streamsize>::max(),
+                '\n'
+            );
+        }
+    } while (!valid);
+    return number;
+}
+
+bool isTargetNumberFoundInMatrixNumbers(
+    const short MATRIX_NUMBERS[5][5],
     const short ROWS,
-    const short COLUMNS
+    const short COLUMNS,
+    const short TARGET_NUMBER
 ) {
-    short sumOfNumbers = 0;
     for (short row = 0; row < ROWS; ++row)
         for (short column = 0; column < COLUMNS; ++column)
-            sumOfNumbers += MATRIX_NUMBERS[row][column];
-    cout << "Sum of Matrix Numbers = " << sumOfNumbers;
+            if (MATRIX_NUMBERS[row][column] == TARGET_NUMBER)
+                return true;
+    return false;
 }
 
 int main() {
@@ -56,8 +76,8 @@ int main() {
         )
     );
 
-    const short ROWS = 3,
-                COLUMNS = 3;
+    const short ROWS = 5,
+                COLUMNS = 5;
     const short NUMBER_WIDTH = 2;
     short matrixNumbers[ROWS][COLUMNS];
 
@@ -77,9 +97,16 @@ int main() {
 
     cout << endl;
 
-    printSumOfNumbers(
-        matrixNumbers,
-        ROWS,
-        COLUMNS
-    );
+    const short TARGET_NUMBER = readNumber();
+
+    cout << "Number " << TARGET_NUMBER << " Is" << (
+        isTargetNumberFoundInMatrixNumbers(
+            matrixNumbers,
+            ROWS,
+            COLUMNS,
+            TARGET_NUMBER
+        )
+            ? ""
+            : "n't"
+    ) << " Found";
 }

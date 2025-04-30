@@ -1,5 +1,6 @@
 #include <iomanip>
 #include <iostream>
+#include <limits>
 using namespace std;
 
 short randomNumber(
@@ -8,20 +9,20 @@ short randomNumber(
 ) { return rand() % (TO - FROM + 1) + FROM; }
 
 void fillMatrixWithRandomNumbers(
-    short matrixNumbers[3][3],
+    short matrixNumbers[5][5],
     const short ROWS,
     const short COLUMNS
 ) {
     for (short row = 0; row < ROWS; ++row)
         for (short column = 0; column < COLUMNS; ++column)
             matrixNumbers[row][column] = randomNumber(
-                -99,
-                999
+                0,
+                9
             );
 }
 
 void printMatrixNumbers(
-    const short MATRIX_NUMBERS[3][3],
+    const short MATRIX_NUMBERS[5][5],
     const short ROWS,
     const short COLUMNS,
     const short NUMBER_WIDTH
@@ -35,26 +36,36 @@ void printMatrixNumbers(
     }
 }
 
-void calculateSumEachColumnMatrixNumbers(
-    const short MATRIX_NUMBERS[3][3],
-    short sumEachNumbers[3],
-    const short ROWS,
-    const short COLUMNS
-) {
-    for (short column = 0; column < COLUMNS; ++column) {
-        short columnSum = MATRIX_NUMBERS[0][column];
-        for (short row = 1; row < ROWS; ++row)
-            columnSum += MATRIX_NUMBERS[row][column];
-        sumEachNumbers[column] = columnSum;
-    }
+short readNumber() {
+    short number;
+    bool valid;
+    do {
+        cout << "Enter Target Number:" << endl;
+        cin >> number;
+        valid = !cin.fail();
+        if (!valid) {
+            cin.clear();
+            cin.ignore(
+                numeric_limits<streamsize>::max(),
+                '\n'
+            );
+        }
+    } while (!valid);
+    return number;
 }
 
-void printSumEachColumns(
-    short sumEachColumns[3],
-    const short COLUMNS
+short countOfTargetNumberInMatrixNumbers(
+    const short MATRIX_NUMBERS[5][5],
+    const short ROWS,
+    const short COLUMNS,
+    const short TARGET_NUMBER
 ) {
-    for (short index = 0; index < COLUMNS; ++index)
-        cout << "Column " << index + 1 << " Sum = " << sumEachColumns[index] << endl;
+    short counter = 0;
+    for (short row = 0; row < ROWS; ++row)
+        for (short column = 0; column < COLUMNS; ++column)
+            if (MATRIX_NUMBERS[row][column] == TARGET_NUMBER)
+                counter++;
+    return counter;
 }
 
 int main() {
@@ -66,11 +77,10 @@ int main() {
         )
     );
 
-    const short ROWS = 3,
-                COLUMNS = 3;
-    const short NUMBER_WIDTH = 3;
+    const short ROWS = 5,
+                COLUMNS = 5;
+    const short NUMBER_WIDTH = 1;
     short matrixNumbers[ROWS][COLUMNS];
-    short sumEachColumns[ROWS];
 
     fillMatrixWithRandomNumbers(
         matrixNumbers,
@@ -88,15 +98,12 @@ int main() {
 
     cout << endl;
 
-    calculateSumEachColumnMatrixNumbers(
-        matrixNumbers,
-        sumEachColumns,
-        ROWS,
-        COLUMNS
-    );
+    const short TARGET_NUMBER = readNumber();
 
-    printSumEachColumns(
-        sumEachColumns,
-        COLUMNS
-    );
+    cout << "Number " << TARGET_NUMBER << " appeared " << countOfTargetNumberInMatrixNumbers(
+        matrixNumbers,
+        ROWS,
+        COLUMNS,
+        TARGET_NUMBER
+    ) << " time(s)";
 }

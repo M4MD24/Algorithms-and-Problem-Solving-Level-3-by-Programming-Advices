@@ -35,7 +35,7 @@ void printMatrixNumbers(
     }
 }
 
-void printSumOfNumbers(
+short calculateSumOfNumbers(
     const short MATRIX_NUMBERS[3][3],
     const short ROWS,
     const short COLUMNS
@@ -44,7 +44,20 @@ void printSumOfNumbers(
     for (short row = 0; row < ROWS; ++row)
         for (short column = 0; column < COLUMNS; ++column)
             sumOfNumbers += MATRIX_NUMBERS[row][column];
-    cout << "Sum of Matrix Numbers = " << sumOfNumbers;
+    return sumOfNumbers;
+}
+
+bool areTypicalMatrices(
+    const short FIRST_MATRIX_NUMBERS[3][3],
+    const short SECOND_MATRIX_NUMBERS[3][3],
+    const short ROWS,
+    const short COLUMNS
+) {
+    for (short row = 0; row < ROWS; ++row)
+        for (short column = 0; column < COLUMNS; ++column)
+            if (FIRST_MATRIX_NUMBERS[row][column] != SECOND_MATRIX_NUMBERS[row][column])
+                return false;
+    return true;
 }
 
 int main() {
@@ -59,27 +72,45 @@ int main() {
     const short ROWS = 3,
                 COLUMNS = 3;
     const short NUMBER_WIDTH = 2;
-    short matrixNumbers[ROWS][COLUMNS];
+    short firstMatrixNumbers[ROWS][COLUMNS],
+          secondMatrixNumbers[ROWS][COLUMNS];
 
     fillMatrixWithRandomNumbers(
-        matrixNumbers,
+        firstMatrixNumbers,
         ROWS,
         COLUMNS
     );
 
-    cout << "Matrix Numbers:" << endl;
+    fillMatrixWithRandomNumbers(
+        secondMatrixNumbers,
+        ROWS,
+        COLUMNS
+    );
+
+    cout << "First Matrix Numbers:" << endl;
     printMatrixNumbers(
-        matrixNumbers,
+        firstMatrixNumbers,
         ROWS,
         COLUMNS,
         NUMBER_WIDTH
     );
 
-    cout << endl;
-
-    printSumOfNumbers(
-        matrixNumbers,
+    cout << "\nSecond Matrix Numbers:" << endl;
+    printMatrixNumbers(
+        secondMatrixNumbers,
         ROWS,
-        COLUMNS
+        COLUMNS,
+        NUMBER_WIDTH
     );
+
+    cout << "\nMatrices are" << (
+        areTypicalMatrices(
+            firstMatrixNumbers,
+            secondMatrixNumbers,
+            ROWS,
+            COLUMNS
+        )
+            ? ""
+            : "n't"
+    ) << " typical";
 }

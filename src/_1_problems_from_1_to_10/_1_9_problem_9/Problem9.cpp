@@ -41,7 +41,7 @@ void printMiddleRowOfMatrixNumbers(
     const short COLUMNS
 ) {
     const short MIDDLE_ROW = static_cast<short>(ROWS / 2);
-    for (int column = 0; column < COLUMNS; ++column)
+    for (short column = 0; column < COLUMNS; ++column)
         cout << MATRIX_NUMBERS[MIDDLE_ROW][column] << ' ';
 }
 
@@ -51,7 +51,7 @@ void printMiddleColumnOfMatrixNumbers(
     const short COLUMNS
 ) {
     const short MIDDLE_COLUMN = static_cast<short>(COLUMNS / 2);
-    for (int row = 0; row < ROWS; ++row)
+    for (short row = 0; row < ROWS; ++row)
         cout << MATRIX_NUMBERS[row][MIDDLE_COLUMN] << endl;
 }
 
@@ -66,7 +66,7 @@ int main() {
 
     const short ROWS = 3,
                 COLUMNS = 3;
-    const short NUMBER_NUMBER_WIDTH = 2;
+    const short NUMBER_WIDTH = 2;
     short matrixNumbers[ROWS][COLUMNS];
 
     fillMatrixWithRandomNumbers(
@@ -80,7 +80,7 @@ int main() {
         matrixNumbers,
         ROWS,
         COLUMNS,
-        NUMBER_NUMBER_WIDTH
+        NUMBER_WIDTH
     );
 
     cout << "\nMiddle Column of Matrix Numbers:" << endl;
