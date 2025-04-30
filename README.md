@@ -13,3 +13,4 @@
    10. [Problem 10](src/_1_problems_from_1_to_10/_1_10_problem_10)
 2. [Problems from 11 to 20](src/_2_problems_from_11_to_20)
    1. [Problem 11](src/_2_problems_from_11_to_20/_2_1_problem_11)
+   2. [Problem 12](src/_2_problems_from_11_to_20/_2_2_problem_12)
