@@ -7,3 +7,4 @@
    4. [Problem 4](src/_1_problems_from_1_to_10/_1_4_problem_4)
    5. [Problem 5](src/_1_problems_from_1_to_10/_1_5_problem_5)
    6. [Problem 6](src/_1_problems_from_1_to_10/_1_6_problem_6)
+   7. [Problem 7](src/_1_problems_from_1_to_10/_1_7_problem_7)
