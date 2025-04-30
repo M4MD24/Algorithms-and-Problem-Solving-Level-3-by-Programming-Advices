@@ -24,3 +24,4 @@
    10. [Problem 20](src/_2_problems_from_11_to_20/_2_10_problem_20)
 3. [Problems from 21 to 30](src/_3_problems_from_21_to_30)
    1. [Problem 21](src/_3_problems_from_21_to_30/_3_1_problem_21)
+   2. [Problem 22](src/_3_problems_from_21_to_30/_3_2_problem_22)
