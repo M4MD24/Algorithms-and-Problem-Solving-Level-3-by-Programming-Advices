@@ -37,3 +37,4 @@
    1. [Problem 31](src/_4_problems_from_31_to_40/_4_1_problem_31)
    2. [Problem 32](src/_4_problems_from_31_to_40/_4_2_problem_32)
    3. [Problem 33](src/_4_problems_from_31_to_40/_4_3_problem_33)
+   4. [Problem 34](src/_4_problems_from_31_to_40/_4_4_problem_34)
