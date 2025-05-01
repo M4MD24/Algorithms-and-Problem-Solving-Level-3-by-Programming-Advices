@@ -31,3 +31,4 @@
    6. [Problem 26](src/_3_problems_from_21_to_30/_3_6_problem_26)
    7. [Problem 27](src/_3_problems_from_21_to_30/_3_7_problem_27)
    8. [Problem 28](src/_3_problems_from_21_to_30/_3_8_problem_28)
+   9. [Problem 29](src/_3_problems_from_21_to_30/_3_9_problem_29)
