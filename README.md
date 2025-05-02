@@ -42,3 +42,4 @@
    6. [Problem 36](src/_4_problems_from_31_to_40/_4_6_problem_36)
    7. [Problem 37](src/_4_problems_from_31_to_40/_4_7_problem_37)
    8. [Problem 38](src/_4_problems_from_31_to_40/_4_8_problem_38)
+   9. [Problem 39](src/_4_problems_from_31_to_40/_4_9_problem_39)
