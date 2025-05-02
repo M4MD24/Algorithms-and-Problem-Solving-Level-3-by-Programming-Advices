@@ -47,3 +47,4 @@
 5. [Problems from 41 to 50](src/_5_problems_from_41_to_50)
    1. [Problem 41](src/_5_problems_from_41_to_50/_5_1_problem_41)
    2. [Problem 42](src/_5_problems_from_41_to_50/_5_2_problem_42)
+   3. [Problem 43](src/_5_problems_from_41_to_50/_5_3_problem_43)
