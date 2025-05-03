@@ -50,3 +50,4 @@
    3. [Problem 43](src/_5_problems_from_41_to_50/_5_3_problem_43)
    4. [Problem 44](src/_5_problems_from_41_to_50/_5_4_problem_44)
    5. [Problem 45](src/_5_problems_from_41_to_50/_5_5_problem_45)
+   6. [Problem 46](src/_5_problems_from_41_to_50/_5_6_problem_46)
