@@ -188,7 +188,7 @@ void saveClientAccountsInformationAsFile(
     const vector<ClientAccount>& CLIENT_ACCOUNTS
 ) {
     fstream file;
-    const string PATH = "src/_5_problems_from_41_to_50/_5_7_problem_47/ClientAccounts.txt";
+    const string PATH = "src/_5_problems_from_41_to_51/_5_7_problem_47/ClientAccounts.txt";
     file.open(
         PATH,
         ios::out

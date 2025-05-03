@@ -139,7 +139,7 @@ void printClientAccountsInformationRecordTable(
 int main() {
     printClientAccountsInformationRecordTable(
         readClientsByFile(
-            "src/_5_problems_from_41_to_50/_5_8_problem_48/ClientAccounts.txt"
+            "src/_5_problems_from_41_to_51/_5_8_problem_48/ClientAccounts.txt"
         )
     );
 }
