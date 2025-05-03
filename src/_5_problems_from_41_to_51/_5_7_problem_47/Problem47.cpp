@@ -18,7 +18,7 @@ struct ClientAccount {
     string pinCode;
     FullName fullName;
     MobileNumber mobileNumber;
-    double long balance = 0.0;
+    long double balance = 0.0;
 };
 
 string readText(
@@ -103,7 +103,7 @@ void readIdentifierNumber(
 }
 
 void readBalance(
-    double long& balance
+    long double& balance
 ) {
     cout << "Enter Balance" << endl;
     cin >> balance;
