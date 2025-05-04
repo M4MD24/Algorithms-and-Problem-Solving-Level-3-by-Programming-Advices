@@ -208,36 +208,36 @@ void printHeader(
 }
 
 void printBody(
-    const ClientAccount& CLIENT_ACCOUNTS,
+    const ClientAccount& CLIENT_ACCOUNT,
     const string& LINE
 ) {
     cout << "| " << setw(
         20
-    ) << CLIENT_ACCOUNTS.identifierNumber;
+    ) << CLIENT_ACCOUNT.identifierNumber;
     cout << " | " << setw(
         8
-    ) << CLIENT_ACCOUNTS.pinCode;
+    ) << CLIENT_ACCOUNT.pinCode;
     cout << " | " << setw(
         31
-    ) << CLIENT_ACCOUNTS.fullName.firstName + " " + CLIENT_ACCOUNTS.fullName.secondName;
+    ) << CLIENT_ACCOUNT.fullName.firstName + " " + CLIENT_ACCOUNT.fullName.secondName;
     cout << " | " << setw(
         25
-    ) << CLIENT_ACCOUNTS.mobileNumber.countryCode + CLIENT_ACCOUNTS.mobileNumber.contactNumber;
+    ) << CLIENT_ACCOUNT.mobileNumber.countryCode + CLIENT_ACCOUNT.mobileNumber.contactNumber;
     cout << " | " << setw(
         20
-    ) << CLIENT_ACCOUNTS.balance << " |";
+    ) << CLIENT_ACCOUNT.balance << " |";
     cout << LINE;
 }
 
 void printClientAccountsInformationRecordTable(
-    const ClientAccount& CLIENT_ACCOUNTS
+    const ClientAccount& CLIENT_ACCOUNT
 ) {
     const string LINE = "------------------------------------------------------------------------------------------------------------------------";
     printHeader(
         LINE
     );
     printBody(
-        CLIENT_ACCOUNTS,
+        CLIENT_ACCOUNT,
         LINE
     );
 }
