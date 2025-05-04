@@ -188,7 +188,7 @@ vector<string> readClientsByFile(
 void printHeader(
     const string& LINE
 ) {
-    cout << LINE;
+    cout << LINE << endl;
     cout << "| " << setw(
         20
     ) << "Identifier Number";
@@ -196,7 +196,7 @@ void printHeader(
         8
     ) << "PIN Code";
     cout << " | " << setw(
-        31
+        30
     ) << "Full Name";
     cout << " | " << setw(
         25
@@ -204,7 +204,7 @@ void printHeader(
     cout << " | " << setw(
         20
     ) << "Balance" << " |";
-    cout << LINE;
+    cout << endl << LINE << endl;
 }
 
 void printBody(
@@ -218,7 +218,7 @@ void printBody(
         8
     ) << CLIENT_ACCOUNT.pinCode;
     cout << " | " << setw(
-        31
+        30
     ) << CLIENT_ACCOUNT.fullName.firstName + " " + CLIENT_ACCOUNT.fullName.secondName;
     cout << " | " << setw(
         25
@@ -226,13 +226,13 @@ void printBody(
     cout << " | " << setw(
         20
     ) << CLIENT_ACCOUNT.balance << " |";
-    cout << LINE;
+    cout << endl << LINE << endl;
 }
 
 void printClientAccountsInformationRecordTable(
     const ClientAccount& CLIENT_ACCOUNT
 ) {
-    const string LINE = "------------------------------------------------------------------------------------------------------------------------";
+    const string LINE = "-----------------------------------------------------------------------------------------------------------------------";
     printHeader(
         LINE
     );
