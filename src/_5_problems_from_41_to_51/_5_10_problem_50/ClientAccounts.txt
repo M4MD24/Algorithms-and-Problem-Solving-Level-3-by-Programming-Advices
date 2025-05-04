@@ -1,0 +1,6 @@
+Client1\\1234\\FirstName1\\SecondName1\\+20\\1111111111\\11111.000000
+Client2\\5678\\FirstName2\\SecondName2\\+20\\2222222222\\22222.000000
+Client3\\9012\\FirstName3\\SecondName3\\+20\\3333333333\\33333.000000
+Client4\\3456\\FirstName4\\SecondName4\\+20\\4444444444\\44444.000000
+Client5\\7890\\FirstName5\\SecondName5\\+20\\5555555555\\55555.000000
+Client6\\1346\\FirstName6\\SecondName6\\+20\\6666666666\\66666.000000
