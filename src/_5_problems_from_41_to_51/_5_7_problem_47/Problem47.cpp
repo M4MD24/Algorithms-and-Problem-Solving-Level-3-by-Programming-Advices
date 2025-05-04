@@ -129,7 +129,7 @@ void readNewClient(
     );
 }
 
-string printClientAccountInformationAsLine(
+string clientAccountInformationAsLine(
     const ClientAccount& CLIENT_ACCOUNT,
     const string& SEPARATOR = "\\\\"
 ) {
@@ -179,7 +179,7 @@ void printClientAccountsInformationAsLine(
     fstream& file
 ) {
     for (const ClientAccount& CLIENT_ACCOUNT : CLIENT_ACCOUNTS)
-        file << printClientAccountInformationAsLine(
+        file << clientAccountInformationAsLine(
             CLIENT_ACCOUNT
         ) << endl;
 }
@@ -198,7 +198,6 @@ void saveClientAccountsInformationAsFile(
             CLIENT_ACCOUNTS,
             file
         );
-
         cout << "Client Accounts Added Successfully to The File: " << PATH;
     }
 }
