@@ -16,7 +16,7 @@ struct FullName {
 
 struct ClientAccount {
     string identifierNumber;
-    string pinCode;
+    string PIN_Code;
     FullName fullName;
     MobileNumber mobileNumber;
     long double balance = 0.0;
@@ -31,10 +31,10 @@ string readText(
     return text;
 }
 
-void readPinCode(
-    string& pinCode,
+void readPIN_Code(
+    string& PIN_Code,
     const string& PIN_CODE_FIELD
-) { pinCode = PIN_CODE_FIELD; }
+) { PIN_Code = PIN_CODE_FIELD; }
 
 void readFirstName(
     string& firstName,
@@ -100,7 +100,7 @@ void readBalance(
     );
 }
 
-void readClientFields(
+void readClientAccountFields(
     ClientAccount& clientAccount,
     const vector<string>& FIELDS
 ) {
@@ -108,8 +108,8 @@ void readClientFields(
         clientAccount.identifierNumber,
         FIELDS[0]
     );
-    readPinCode(
-        clientAccount.pinCode,
+    readPIN_Code(
+        clientAccount.PIN_Code,
         FIELDS[1]
     );
     readFullName(
@@ -128,7 +128,7 @@ void readClientFields(
     );
 }
 
-vector<string> readClientByLine(
+vector<string> readClientAccountByLine(
     const string& CLIENT_INFORMATION_LINE,
     const string& SEPARATOR = "\\\\"
 ) {
@@ -216,7 +216,7 @@ void printBody(
     ) << CLIENT_ACCOUNT.identifierNumber;
     cout << " | " << setw(
         8
-    ) << CLIENT_ACCOUNT.pinCode;
+    ) << CLIENT_ACCOUNT.PIN_Code;
     cout << " | " << setw(
         30
     ) << CLIENT_ACCOUNT.fullName.firstName + " " + CLIENT_ACCOUNT.fullName.secondName;
@@ -261,9 +261,9 @@ void convertLineToClientAccountRecord(
     const string& CLIENT_ACCOUNT_LINE,
     ClientAccount& clientAccount
 ) {
-    readClientFields(
+    readClientAccountFields(
         clientAccount,
-        readClientByLine(
+        readClientAccountByLine(
             CLIENT_ACCOUNT_LINE
         )
     );

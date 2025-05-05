@@ -16,7 +16,7 @@ string readText(
     return text;
 }
 
-vector<string> readClientByLine(
+vector<string> readClientAccountByLine(
     const string& CLIENT_INFORMATION_LINE,
     const string& SEPARATOR = "\\\\"
 ) {
@@ -100,7 +100,7 @@ void printBody(
     const string& LINE
 ) {
     for (const string& CLIENT_ACCOUNT_INFORMATION_LINES : CLIENT_ACCOUNTS_INFORMATION_LINES) {
-        const vector<string> CLIENT_ACCOUNT_INFORMATION_FIELDS = readClientByLine(
+        const vector<string> CLIENT_ACCOUNT_INFORMATION_FIELDS = readClientAccountByLine(
             CLIENT_ACCOUNT_INFORMATION_LINES
         );
         cout << "| " << setw(
