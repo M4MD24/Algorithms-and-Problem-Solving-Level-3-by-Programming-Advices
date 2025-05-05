@@ -21,7 +21,7 @@ enum MainMenuChoice {
 enum TransactionsChoice {
     Deposit = 1,
     Withdraw = 2,
-    TotalBalance = 3,
+    TotalBalances = 3,
     BackToMainMenu = 4
 };
 
@@ -63,7 +63,7 @@ void displayTransactionsMenu() {
     cout << "Transactions Menu:" << endl
         << "[1] Deposit" << endl
         << "[2] Withdraw" << endl
-        << "[3] Total Balance" << endl
+        << "[3] Total Balances" << endl
         << "[4] Back to Main Menu" << endl;
 }
 
@@ -267,7 +267,7 @@ void createNewClientAccount() {
 }
 
 void printHeader() {
-    cout << LINE << endl;
+    cout << TABLE_LINE << endl;
     cout << "| " << setw(
         20
     ) << "Identifier Number";
@@ -283,7 +283,7 @@ void printHeader() {
     cout << " | " << setw(
         20
     ) << "Balance" << " |";
-    cout << endl << LINE << endl;
+    cout << endl << TABLE_LINE << endl;
 }
 
 void printBody(
@@ -306,7 +306,7 @@ void printBody(
     ) << fixed << setprecision(
         BALANCE_PRECISION
     ) << CLIENT_ACCOUNT.balance << " |";
-    cout << endl << LINE << endl;
+    cout << endl << TABLE_LINE << endl;
 }
 
 void printClientAccountRecordsTable(
@@ -319,7 +319,7 @@ void printClientAccountRecordsTable(
 }
 
 vector<string> readClientAccountByLine(
-    const string& CLIENT_INFORMATION_LINE,
+    const string& CLIENT_ACCOUNT_LINE,
     const string& SEPARATOR = "\\\\"
 ) {
     vector<string> tokens;
@@ -327,14 +327,14 @@ vector<string> readClientAccountByLine(
            position;
     while (
         (
-            position = CLIENT_INFORMATION_LINE.find(
+            position = CLIENT_ACCOUNT_LINE.find(
                 SEPARATOR,
                 previous
             )
         ) != string::npos
     ) {
         tokens.push_back(
-            CLIENT_INFORMATION_LINE.substr(
+            CLIENT_ACCOUNT_LINE.substr(
                 previous,
                 position - previous
             )
@@ -342,7 +342,7 @@ vector<string> readClientAccountByLine(
         previous = position + SEPARATOR.length();
     }
     tokens.push_back(
-        CLIENT_INFORMATION_LINE.substr(
+        CLIENT_ACCOUNT_LINE.substr(
             previous
         )
     );
@@ -793,6 +793,64 @@ void deposit(
     );
 }
 
+void printTotalBalancesHeader() {
+    cout << TOTAL_BALANCES_TABLE_LINE << endl;
+    cout << "| " << setw(
+        20
+    ) << "Identifier Number";
+    cout << " | " << setw(
+        30
+    ) << "Full Name";
+    cout << " | " << setw(
+        20
+    ) << "Balance" << " |";
+    cout << endl << TOTAL_BALANCES_TABLE_LINE << endl;
+}
+
+void printTotalBalancesBody(
+    const ClientAccount& CLIENT_ACCOUNT
+) {
+    cout << "| " << setw(
+        20
+    ) << CLIENT_ACCOUNT.identifierNumber;
+    cout << " | " << setw(
+        30
+    ) << CLIENT_ACCOUNT.fullName.firstName + " " + CLIENT_ACCOUNT.fullName.secondName;
+    cout << " | " << setw(
+        20
+    ) << fixed << setprecision(
+        BALANCE_PRECISION
+    ) << CLIENT_ACCOUNT.balance << " |";
+    cout << endl << TOTAL_BALANCES_TABLE_LINE << endl;
+}
+
+void printTotalBalances(
+    const vector<string>& CLIENT_ACCOUNT_LINES
+) {
+    long double totalBalances = 0.0;
+
+    printTotalBalancesHeader();
+
+    for (const string& CLIENT_ACCOUNT_LINE : CLIENT_ACCOUNT_LINES) {
+        ClientAccount clientAccount;
+
+        readClientAccountFields(
+            clientAccount,
+            readClientAccountByLine(
+                CLIENT_ACCOUNT_LINE
+            )
+        );
+
+        totalBalances += clientAccount.balance;
+
+        printTotalBalancesBody(
+            clientAccount
+        );
+    }
+
+    cout << "Total Balances = " << totalBalances << endl;
+}
+
 void performTransactionMenu() {
     do {
         displayTransactionsMenu();
@@ -819,11 +877,11 @@ void performTransactionMenu() {
             );
             cout << endl;
             break;
-        case TotalBalance:
-            printBalance(
-                findClientAccountByIdentifierNumber(
-                    false
-                ).balance
+        case TotalBalances:
+            printTotalBalances(
+                readClientAccountLinesInFile(
+                    CLIENT_ACCOUNTS_PATH
+                )
             );
             cout << endl;
             break;

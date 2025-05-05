@@ -129,7 +129,7 @@ void readClientAccountFields(
 }
 
 vector<string> readClientAccountByLine(
-    const string& CLIENT_INFORMATION_LINE,
+    const string& CLIENT_ACCOUNT_LINE,
     const string& SEPARATOR = "\\\\"
 ) {
     vector<string> tokens;
@@ -137,14 +137,14 @@ vector<string> readClientAccountByLine(
            position;
     while (
         (
-            position = CLIENT_INFORMATION_LINE.find(
+            position = CLIENT_ACCOUNT_LINE.find(
                 SEPARATOR,
                 previous
             )
         ) != string::npos
     ) {
         tokens.push_back(
-            CLIENT_INFORMATION_LINE.substr(
+            CLIENT_ACCOUNT_LINE.substr(
                 previous,
                 position - previous
             )
@@ -152,7 +152,7 @@ vector<string> readClientAccountByLine(
         previous = position + SEPARATOR.length();
     }
     tokens.push_back(
-        CLIENT_INFORMATION_LINE.substr(
+        CLIENT_ACCOUNT_LINE.substr(
             previous
         )
     );
