@@ -1,0 +1,8 @@
+#pragma once
+#include <string>
+
+namespace Constants {
+    inline const std::string CLIENT_ACCOUNTS_PATH = "src/_6_projects/_6_1_bank/database/ClientAccounts.txt";
+    inline const std::string LINE = "-----------------------------------------------------------------------------------------------------------------------";
+    inline constexpr short BALANCE_PRECISION  = 3;
+}
