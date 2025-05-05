@@ -1,3 +1,4 @@
+#include <cmath>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -13,7 +14,15 @@ enum MainMenuChoice {
     UpdateClientAccount = 3,
     DeleteClientAccount = 4,
     FindClientAccount = 5,
-    ExitProgram = 6
+    Transactions = 6,
+    ExitProgram = 7
+};
+
+enum TransactionsChoice {
+    Deposit = 1,
+    Withdraw = 2,
+    TotalBalance = 3,
+    BackToMainMenu = 4
 };
 
 enum FileRequest {
@@ -46,7 +55,16 @@ void displayMainMenu() {
         << "[3] Update Client Account" << endl
         << "[4] Delete Client Account" << endl
         << "[5] Find Client Account" << endl
-        << "[6] Exit Program" << endl;
+        << "[6] Transactions" << endl
+        << "[7] Exit Program" << endl;
+}
+
+void displayTransactionsMenu() {
+    cout << "Transactions Menu:" << endl
+        << "[1] Deposit" << endl
+        << "[2] Withdraw" << endl
+        << "[3] Total Balance" << endl
+        << "[4] Back to Main Menu" << endl;
 }
 
 bool isNumber(
@@ -86,6 +104,10 @@ short readNumber(
     );
     return number;
 }
+
+bool isPositiveNumber(
+    const long double& NUMBER
+) { return NUMBER > 0; }
 
 string readText(
     const string& INPUT_TYPE_NAME
@@ -544,7 +566,8 @@ string checkFileRequest(
 }
 
 void updateClientAccountByIdentifierNumber(
-    const ClientAccount& CLIENT_ACCOUNT
+    const ClientAccount& CLIENT_ACCOUNT,
+    const bool isTransaction
 ) {
     if (
         const string CLIENT_ACCOUNT_IDENTIFIER_NUMBER = CLIENT_ACCOUNT.identifierNumber;
@@ -576,15 +599,21 @@ void updateClientAccountByIdentifierNumber(
                 );
 
                 if (currentClientAccount.identifierNumber == CLIENT_ACCOUNT_IDENTIFIER_NUMBER) {
-                    updateClientAccount(
-                        currentClientAccount
-                    );
-
-                    updatedClientAccountLines.push_back(
-                        convertFromRecordToLine(
+                    if (!isTransaction) {
+                        updateClientAccount(
                             currentClientAccount
-                        )
-                    );
+                        );
+                        updatedClientAccountLines.push_back(
+                            convertFromRecordToLine(
+                                currentClientAccount
+                            )
+                        );
+                    } else
+                        updatedClientAccountLines.push_back(
+                            convertFromRecordToLine(
+                                CLIENT_ACCOUNT
+                            )
+                        );
                 } else
                     updatedClientAccountLines.push_back(
                         clientAccountLine
@@ -643,7 +672,9 @@ void deleteClientAccountByIdentifierNumber(
         }
 }
 
-ClientAccount findClientAccountByIdentifierNumber() {
+ClientAccount findClientAccountByIdentifierNumber(
+    const bool DISPLAY_CLIENT_ACCOUNT_INFORMATION
+) {
     string identifierNumberTarget;
     readIdentifierNumber(
         identifierNumberTarget
@@ -677,10 +708,12 @@ ClientAccount findClientAccountByIdentifierNumber() {
                     )
                 );
 
-                printHeader();
-                printBody(
-                    clientAccount
-                );
+                if (DISPLAY_CLIENT_ACCOUNT_INFORMATION) {
+                    printHeader();
+                    printBody(
+                        clientAccount
+                    );
+                }
 
                 return clientAccount;
             }
@@ -692,6 +725,113 @@ ClientAccount findClientAccountByIdentifierNumber() {
     }
 
     return ClientAccount{};
+}
+
+void printBalance(
+    const long double BALANCE
+) {
+    cout << "Current Balance = " << fixed << setprecision(
+        BALANCE_PRECISION
+    ) << BALANCE << endl;
+}
+
+bool areYourSure() {
+    string accepting;
+    const string ACCEPT_TEXT = "yes",
+                 REJECT_TEXT = "no";
+    do {
+        cout << "Are your sure?" << endl;
+        cin >> accepting;
+    } while (
+        accepting != ACCEPT_TEXT &&
+        accepting != REJECT_TEXT
+    );
+    return accepting == ACCEPT_TEXT;
+}
+
+long double readAmount() {
+    long double amount;
+    do {
+        readBalance(
+            amount
+        );
+    } while (
+        !isPositiveNumber(
+            amount
+        ) && !areYourSure()
+    );
+    return amount;
+}
+
+void withdraw(
+    ClientAccount clientAccount
+) {
+    long double& balance = clientAccount.balance;
+
+    const long double AMOUNT = readAmount();
+
+    balance -= AMOUNT;
+
+    updateClientAccountByIdentifierNumber(
+        clientAccount,
+        true
+    );
+}
+
+void deposit(
+    ClientAccount clientAccount
+) {
+    long double& balance = clientAccount.balance;
+
+    const long double AMOUNT = readAmount();
+
+    balance += AMOUNT;
+
+    updateClientAccountByIdentifierNumber(
+        clientAccount,
+        true
+    );
+}
+
+void performTransactionMenu() {
+    do {
+        displayTransactionsMenu();
+        constexpr short START_NUMBER = 1,
+                        END_NUMBER = 4;
+        const short CHOICE = readNumber(
+            START_NUMBER,
+            END_NUMBER
+        );
+        switch (static_cast<TransactionsChoice>(CHOICE)) {
+        case Deposit:
+            deposit(
+                findClientAccountByIdentifierNumber(
+                    true
+                )
+            );
+            cout << endl;
+            break;
+        case Withdraw:
+            withdraw(
+                findClientAccountByIdentifierNumber(
+                    true
+                )
+            );
+            cout << endl;
+            break;
+        case TotalBalance:
+            printBalance(
+                findClientAccountByIdentifierNumber(
+                    false
+                ).balance
+            );
+            cout << endl;
+            break;
+        case BackToMainMenu:
+            return;
+        default: ;
+        }
+    } while (true);
 }
 
 void performMainMenu() {
@@ -706,6 +846,7 @@ void performMainMenu() {
         switch (static_cast<MainMenuChoice>(CHOICE)) {
         case CreateNewClientAccount:
             createNewClientAccount();
+            cout << endl;
             break;
         case ShowClientAccountList:
             showClientAccountList();
@@ -713,19 +854,29 @@ void performMainMenu() {
             break;
         case UpdateClientAccount:
             updateClientAccountByIdentifierNumber(
-                findClientAccountByIdentifierNumber()
+                findClientAccountByIdentifierNumber(
+                    true
+                ),
+                false
             );
             cout << endl;
             break;
         case DeleteClientAccount:
             deleteClientAccountByIdentifierNumber(
-                findClientAccountByIdentifierNumber()
+                findClientAccountByIdentifierNumber(
+                    true
+                )
             );
             cout << endl;
             break;
         case FindClientAccount:
-            findClientAccountByIdentifierNumber();
+            findClientAccountByIdentifierNumber(
+                true
+            );
             cout << endl;
+            break;
+        case Transactions:
+            performTransactionMenu();
             break;
         case ExitProgram:
             printExitProgramMessage(
