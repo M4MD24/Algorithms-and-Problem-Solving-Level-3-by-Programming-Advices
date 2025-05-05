@@ -15,7 +15,7 @@ struct FullName {
 
 struct ClientAccount {
     string identifierNumber;
-    string pinCode;
+    string PIN_Code;
     FullName fullName;
     MobileNumber mobileNumber;
     long double balance = 0.0;
@@ -30,14 +30,14 @@ string readText(
     return text;
 }
 
-void readPinCode(
-    string& pinCode
+void readPIN_Code(
+    string& PIN_Code
 ) {
     do {
-        pinCode = readText(
+        PIN_Code = readText(
             "PIN Code"
         );
-    } while (pinCode.length() != 4);
+    } while (PIN_Code.length() != 4);
 }
 
 void readFirstName(
@@ -109,14 +109,14 @@ void readBalance(
     cin >> balance;
 }
 
-void readNewClient(
+void readNewClientAccount(
     ClientAccount& clientAccount
 ) {
     readIdentifierNumber(
         clientAccount.identifierNumber
     );
-    readPinCode(
-        clientAccount.pinCode
+    readPIN_Code(
+        clientAccount.PIN_Code
     );
     readFullName(
         clientAccount.fullName
@@ -134,7 +134,7 @@ string clientAccountInformationAsLine(
     const string& SEPARATOR = "\\\\"
 ) {
     return CLIENT_ACCOUNT.identifierNumber + SEPARATOR +
-        CLIENT_ACCOUNT.pinCode + SEPARATOR +
+        CLIENT_ACCOUNT.PIN_Code + SEPARATOR +
         CLIENT_ACCOUNT.fullName.firstName + SEPARATOR +
         CLIENT_ACCOUNT.fullName.secondName + SEPARATOR +
         CLIENT_ACCOUNT.mobileNumber.countryCode + SEPARATOR +
@@ -165,7 +165,7 @@ void readNewClients(
     do {
         ClientAccount clientAccount;
         cout << "Client Account [" << counter++ << "]" << endl;
-        readNewClient(
+        readNewClientAccount(
             clientAccount
         );
         clientAccounts.push_back(

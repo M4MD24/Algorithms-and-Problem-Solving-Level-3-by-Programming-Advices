@@ -16,7 +16,7 @@ struct FullName {
 
 struct ClientAccount {
     string identifierNumber;
-    string pinCode;
+    string PIN_Code;
     FullName fullName;
     MobileNumber mobileNumber;
     long double balance = 0.0;
@@ -31,10 +31,10 @@ string readText(
     return text;
 }
 
-void readPinCode(
-    string& pinCode,
+void readPIN_Code(
+    string& PIN_Code,
     const string& PIN_CODE_FIELD
-) { pinCode = PIN_CODE_FIELD; }
+) { PIN_Code = PIN_CODE_FIELD; }
 
 void readFirstName(
     string& firstName,
@@ -100,7 +100,7 @@ void readBalance(
     );
 }
 
-void readClientFields(
+void readClientAccountFields(
     ClientAccount& clientAccount,
     const vector<string>& FIELDS
 ) {
@@ -108,8 +108,8 @@ void readClientFields(
         clientAccount.identifierNumber,
         FIELDS[0]
     );
-    readPinCode(
-        clientAccount.pinCode,
+    readPIN_Code(
+        clientAccount.PIN_Code,
         FIELDS[1]
     );
     readFullName(
@@ -128,8 +128,8 @@ void readClientFields(
     );
 }
 
-vector<string> readClientByLine(
-    const string& CLIENT_INFORMATION_LINE,
+vector<string> readClientAccountByLine(
+    const string& CLIENT_ACCOUNT_LINE,
     const string& SEPARATOR = "\\\\"
 ) {
     vector<string> tokens;
@@ -137,14 +137,14 @@ vector<string> readClientByLine(
            position;
     while (
         (
-            position = CLIENT_INFORMATION_LINE.find(
+            position = CLIENT_ACCOUNT_LINE.find(
                 SEPARATOR,
                 previous
             )
         ) != string::npos
     ) {
         tokens.push_back(
-            CLIENT_INFORMATION_LINE.substr(
+            CLIENT_ACCOUNT_LINE.substr(
                 previous,
                 position - previous
             )
@@ -152,7 +152,7 @@ vector<string> readClientByLine(
         previous = position + SEPARATOR.length();
     }
     tokens.push_back(
-        CLIENT_INFORMATION_LINE.substr(
+        CLIENT_ACCOUNT_LINE.substr(
             previous
         )
     );
@@ -188,7 +188,7 @@ vector<string> readClientsByFile(
 void printHeader(
     const string& LINE
 ) {
-    cout << LINE;
+    cout << LINE << endl;
     cout << "| " << setw(
         20
     ) << "Identifier Number";
@@ -196,7 +196,7 @@ void printHeader(
         8
     ) << "PIN Code";
     cout << " | " << setw(
-        31
+        30
     ) << "Full Name";
     cout << " | " << setw(
         25
@@ -204,40 +204,40 @@ void printHeader(
     cout << " | " << setw(
         20
     ) << "Balance" << " |";
-    cout << LINE;
+    cout << endl << LINE << endl;
 }
 
 void printBody(
-    const ClientAccount& CLIENT_ACCOUNTS,
+    const ClientAccount& CLIENT_ACCOUNT,
     const string& LINE
 ) {
     cout << "| " << setw(
         20
-    ) << CLIENT_ACCOUNTS.identifierNumber;
+    ) << CLIENT_ACCOUNT.identifierNumber;
     cout << " | " << setw(
         8
-    ) << CLIENT_ACCOUNTS.pinCode;
+    ) << CLIENT_ACCOUNT.PIN_Code;
     cout << " | " << setw(
-        31
-    ) << CLIENT_ACCOUNTS.fullName.firstName + " " + CLIENT_ACCOUNTS.fullName.secondName;
+        30
+    ) << CLIENT_ACCOUNT.fullName.firstName + " " + CLIENT_ACCOUNT.fullName.secondName;
     cout << " | " << setw(
         25
-    ) << CLIENT_ACCOUNTS.mobileNumber.countryCode + CLIENT_ACCOUNTS.mobileNumber.contactNumber;
+    ) << CLIENT_ACCOUNT.mobileNumber.countryCode + CLIENT_ACCOUNT.mobileNumber.contactNumber;
     cout << " | " << setw(
         20
-    ) << CLIENT_ACCOUNTS.balance << " |";
-    cout << LINE;
+    ) << CLIENT_ACCOUNT.balance << " |";
+    cout << endl << LINE << endl;
 }
 
 void printClientAccountsInformationRecordTable(
-    const ClientAccount& CLIENT_ACCOUNTS
+    const ClientAccount& CLIENT_ACCOUNT
 ) {
-    const string LINE = "------------------------------------------------------------------------------------------------------------------------";
+    const string LINE = "-----------------------------------------------------------------------------------------------------------------------";
     printHeader(
         LINE
     );
     printBody(
-        CLIENT_ACCOUNTS,
+        CLIENT_ACCOUNT,
         LINE
     );
 }
@@ -261,9 +261,9 @@ void convertLineToClientAccountRecord(
     const string& CLIENT_ACCOUNT_LINE,
     ClientAccount& clientAccount
 ) {
-    readClientFields(
+    readClientAccountFields(
         clientAccount,
-        readClientByLine(
+        readClientAccountByLine(
             CLIENT_ACCOUNT_LINE
         )
     );
