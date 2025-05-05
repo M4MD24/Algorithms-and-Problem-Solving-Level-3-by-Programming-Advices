@@ -109,7 +109,7 @@ void readBalance(
     cin >> balance;
 }
 
-void readNewClient(
+void readNewClientAccount(
     ClientAccount& clientAccount
 ) {
     readIdentifierNumber(
@@ -165,7 +165,7 @@ void readNewClients(
     do {
         ClientAccount clientAccount;
         cout << "Client Account [" << counter++ << "]" << endl;
-        readNewClient(
+        readNewClientAccount(
             clientAccount
         );
         clientAccounts.push_back(

@@ -110,7 +110,7 @@ void readBalance(
     cin >> balance;
 }
 
-void readNewClient(
+void readNewClientAccount(
     ClientAccount& clientAccount
 ) {
     readIdentifierNumber(
@@ -145,7 +145,7 @@ void printClientAccountInformationAsLine(
 
 int main() {
     ClientAccount clientAccount;
-    readNewClient(
+    readNewClientAccount(
         clientAccount
     );
     printClientAccountInformationAsLine(
