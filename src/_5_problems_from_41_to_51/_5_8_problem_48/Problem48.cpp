@@ -16,8 +16,8 @@ string readText(
     return text;
 }
 
-vector<string> readClientByLine(
-    const string& CLIENT_INFORMATION_LINE,
+vector<string> readClientAccountByLine(
+    const string& CLIENT_ACCOUNT_LINE,
     const string& SEPARATOR = "\\\\"
 ) {
     vector<string> tokens;
@@ -25,14 +25,14 @@ vector<string> readClientByLine(
            position;
     while (
         (
-            position = CLIENT_INFORMATION_LINE.find(
+            position = CLIENT_ACCOUNT_LINE.find(
                 SEPARATOR,
                 previous
             )
         ) != string::npos
     ) {
         tokens.push_back(
-            CLIENT_INFORMATION_LINE.substr(
+            CLIENT_ACCOUNT_LINE.substr(
                 previous,
                 position - previous
             )
@@ -40,7 +40,7 @@ vector<string> readClientByLine(
         previous = position + SEPARATOR.length();
     }
     tokens.push_back(
-        CLIENT_INFORMATION_LINE.substr(
+        CLIENT_ACCOUNT_LINE.substr(
             previous
         )
     );
@@ -76,7 +76,7 @@ vector<string> readClientsByFile(
 void printHeader(
     const string& LINE
 ) {
-    cout << LINE;
+    cout << LINE << endl;
     cout << "| " << setw(
         20
     ) << "Identifier Number";
@@ -84,7 +84,7 @@ void printHeader(
         8
     ) << "PIN Code";
     cout << " | " << setw(
-        31
+        30
     ) << "Full Name";
     cout << " | " << setw(
         25
@@ -92,7 +92,7 @@ void printHeader(
     cout << " | " << setw(
         20
     ) << "Balance" << " |";
-    cout << LINE;
+    cout << endl << LINE << endl;
 }
 
 void printBody(
@@ -100,7 +100,7 @@ void printBody(
     const string& LINE
 ) {
     for (const string& CLIENT_ACCOUNT_INFORMATION_LINES : CLIENT_ACCOUNTS_INFORMATION_LINES) {
-        const vector<string> CLIENT_ACCOUNT_INFORMATION_FIELDS = readClientByLine(
+        const vector<string> CLIENT_ACCOUNT_INFORMATION_FIELDS = readClientAccountByLine(
             CLIENT_ACCOUNT_INFORMATION_LINES
         );
         cout << "| " << setw(
@@ -110,7 +110,7 @@ void printBody(
             8
         ) << CLIENT_ACCOUNT_INFORMATION_FIELDS[1];
         cout << " | " << setw(
-            31
+            30
         ) << CLIENT_ACCOUNT_INFORMATION_FIELDS[2] + " " + CLIENT_ACCOUNT_INFORMATION_FIELDS[3];
         cout << " | " << setw(
             25
@@ -118,14 +118,14 @@ void printBody(
         cout << " | " << setw(
             20
         ) << CLIENT_ACCOUNT_INFORMATION_FIELDS[6] << " |";
-        cout << LINE;
+        cout << endl << LINE << endl;
     }
 }
 
 void printClientAccountsInformationRecordTable(
     const vector<string>& CLIENT_ACCOUNTS_INFORMATION_FIELDS
 ) {
-    const string LINE = "------------------------------------------------------------------------------------------------------------------------";
+    const string LINE = "-----------------------------------------------------------------------------------------------------------------------";
     cout << "Client List (" << CLIENT_ACCOUNTS_INFORMATION_FIELDS.size() << " Client(s))" << endl;
     printHeader(
         LINE

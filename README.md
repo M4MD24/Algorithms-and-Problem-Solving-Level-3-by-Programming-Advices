@@ -56,3 +56,5 @@
     9. [Problem 49](src/_5_problems_from_41_to_51/_5_9_problem_49)
     10. [Problem 50](src/_5_problems_from_41_to_51/_5_10_problem_50)
     11. [Problem 51](src/_5_problems_from_41_to_51/_5_11_problem_51)
+6. [Projects](src/_6_projects)
+    1. [Bank](src/_6_projects/_6_1_bank)
