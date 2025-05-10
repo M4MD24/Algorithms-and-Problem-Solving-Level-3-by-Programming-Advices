@@ -896,7 +896,7 @@ void performMainMenu() {
     do {
         displayMainMenu();
         constexpr short START_NUMBER = 1,
-                        END_NUMBER = 6;
+                        END_NUMBER = 7;
         const short CHOICE = readNumber(
             START_NUMBER,
             END_NUMBER
