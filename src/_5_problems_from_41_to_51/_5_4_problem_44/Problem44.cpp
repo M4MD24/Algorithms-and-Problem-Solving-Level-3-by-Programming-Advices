@@ -35,6 +35,6 @@ int main() {
         text
     );
 
-    cout << "After Remove Punctuations in Text:" << endl
+    cout << "After Removing Punctuations in Text:" << endl
         << text;
 }

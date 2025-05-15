@@ -64,6 +64,6 @@ int main() {
         REPLACE_TEXT
     );
 
-    cout << "Reversed Text:" << endl
+    cout << "After Replacing The Text: " << endl
         << text;
 }

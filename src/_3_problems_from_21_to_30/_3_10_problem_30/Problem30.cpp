@@ -18,11 +18,11 @@ char readCharacter() {
     return character;
 }
 
-unsigned long long targetLetterCount(
+size_t targetLetterCount(
     const string& TEXT,
     const char& TARGET_CHARACTER
 ) {
-    unsigned long long counter = 0;
+    size_t counter = 0;
     for (const char& CHARACTER : TEXT)
         if (CHARACTER == TARGET_CHARACTER)
             counter++;

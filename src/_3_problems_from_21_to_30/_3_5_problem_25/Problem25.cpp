@@ -16,7 +16,7 @@ void printFirstLowercaseLetters(
 ) {
     cout << "First Lowercase Letters:" << endl;
     if (
-        const unsigned long long TEXT_LENGTH = TEXT.size();
+        const size_t TEXT_LENGTH = TEXT.size();
         TEXT_LENGTH > 0
     ) {
         if (
@@ -26,7 +26,7 @@ void printFirstLowercaseLetters(
         )
             cout << TEXT[0] << endl;
         for (
-            unsigned long long firstLetterIndex = 0, secondLetterIndex = 1;
+            size_t firstLetterIndex = 0, secondLetterIndex = 1;
             secondLetterIndex < TEXT_LENGTH;
             ++firstLetterIndex, ++secondLetterIndex
         ) {

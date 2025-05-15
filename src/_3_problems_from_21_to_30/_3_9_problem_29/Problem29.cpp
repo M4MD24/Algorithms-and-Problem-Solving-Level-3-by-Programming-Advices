@@ -11,10 +11,10 @@ string readText() {
     return text;
 }
 
-unsigned long long capitalLetterCount(
+size_t capitalLetterCount(
     const string& TEXT
 ) {
-    unsigned long long counter = 0;
+    size_t counter = 0;
     for (const char& CHARACTER : TEXT)
         if (
             isupper(
@@ -25,10 +25,10 @@ unsigned long long capitalLetterCount(
     return counter;
 }
 
-unsigned long long smallLetterCount(
+size_t smallLetterCount(
     const string& TEXT
 ) {
-    unsigned long long counter = 0;
+    size_t counter = 0;
     for (const char& CHARACTER : TEXT)
         if (
             islower(

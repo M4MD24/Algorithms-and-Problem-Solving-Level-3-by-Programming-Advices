@@ -14,8 +14,8 @@ string readText() {
 
 void splitText(
     string text,
-    vector<string>& words,
-    const string& DELIMITER
+    vector<string> &words,
+    const string &DELIMITER
 ) {
     size_t position;
     while (
@@ -41,11 +41,11 @@ void splitText(
     );
 }
 
-string reverseText(
+string reverseWordOrder(
     string text
 ) {
     vector<string> reversedText;
-    const string& DELIMITER = " ";
+    const string &DELIMITER = " ";
     splitText(
         text,
         reversedText,
@@ -67,8 +67,8 @@ int main() {
     cout << "Original Text:" << endl
         << TEXT << endl;
 
-    cout << "Reversed Text:" << endl
-        << reverseText(
+    cout << "Reversed Word Order: " << endl
+        << reverseWordOrder(
             TEXT
         );
 }

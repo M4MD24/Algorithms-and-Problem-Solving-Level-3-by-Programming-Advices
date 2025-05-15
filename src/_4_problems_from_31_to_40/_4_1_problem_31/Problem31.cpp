@@ -44,12 +44,12 @@ char lowercaseLetter(
     const char& CHARACTER
 ) { return static_cast<char>(CHARACTER | 32); }
 
-unsigned long long targetLetterCount(
+size_t targetLetterCount(
     const string& TEXT,
     const char& TARGET_CHARACTER,
     const bool& MATCH_CASE = true
 ) {
-    unsigned long long counter = 0;
+    size_t counter = 0;
     if (MATCH_CASE)
         for (const char& CHARACTER : TEXT)
             counter += CHARACTER == TARGET_CHARACTER;
